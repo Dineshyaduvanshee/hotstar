@@ -20,13 +20,14 @@ export default  function Register(props) {
         btnClasses.push("btn-success");     
     }
     const StyledButton = Styled.button`
-    display:block;
+    display:${(props) =>(props.flag ? "inline-block" :"block")};
     padding:10px 5px;
-    background-color:orange;
+    background-color:${(props)=>props.bgcolor};
     border:none;
     color:white;
-    width:100%;
+    width:${(props)=>(props.flag ==="1" ? "50%" : "100%")};
     margin:5px ;
+    border-radius:5px;
     `;
     const StyledDiv = Styled.div`
     background:purple;
@@ -35,6 +36,7 @@ export default  function Register(props) {
     `;
     const StyledRegisterContainer = Styled.div`
     width:550px;
+    height:auto;
     &:hover{
         box-shadow:0px 0px 70px purple;
     }
@@ -59,11 +61,16 @@ export default  function Register(props) {
                     <input type={passBoxType} name="password" required className="form-control"/>
                 </div>
                 <br/>
-            <button type="submit" className="btn btn-primary">Register</button> 
-            <button type="text" className={btnClasses.join(" ")} onClick={props.click} style={btnStyle}> {btnText}</button>
-            <StyledButton type="button">Login</StyledButton>
-            <StyledButton type="button">T & C</StyledButton>
-            <StyledDiv>
+            <StyledButton type="submit" flag="0" className="btn btn-primary">Register</StyledButton> 
+
+            <StyledButton type="text" flag="0" className={btnClasses.join(" ")} onClick={props.click} style={btnStyle}> {btnText}</StyledButton>
+         
+            <StyledButton type="button" flag="0" bgcolor="orange">Login</StyledButton>
+            
+            <StyledButton type="button" flag="0" bgcolor="green">Login with Google</StyledButton>
+            
+            <StyledButton flag="0" bgcolor="blue">Login With Facebook</StyledButton>
+            <StyledDiv >
                 <h3>This inbuild styled div</h3>
             </StyledDiv>
             </form>
